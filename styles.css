@@ -21,6 +21,10 @@ body {
     grid-template-columns: repeat(3, auto);
 }
 
+.board.x .cell:hover {
+    
+}
+
 .cell {
     width: var(--cell-size);
     height: var(--cell-size);
@@ -30,6 +34,7 @@ body {
     justify-content: center;
     align-items: center;
     position: relative;
+    cursor: pointer;
 }
 
 .cell:first-child,
@@ -52,9 +57,17 @@ body {
     border-bottom: none;
 }
 
+.cell.x,
+.cell.o {
+    cursor: not-allowed;
+}
+
 /* X styling */
 .cell.x::before,
-.cell.x::after {
+.cell.x::after, 
+/* only apply hover effect when cursor is not hovering over a spot marked with an X or an O */
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
     content: '';
     width: calc(var(--mark-size) * .15);
     height: var(--mark-size);
@@ -62,10 +75,37 @@ body {
     position: absolute;
 }
 
-.cell.x::before {
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
+    background-color: lightgrey;
+}
+
+.cell.x::before, 
+.board.x .cell:not(.x):not(.o):hover::before {
     transform: rotate(45deg);
 }
 
-.cell.x::after {
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::after {
     transform: rotate(-45deg);
+}
+
+/* Y styling */
+.cell.o::before,
+.cell.o::after {
+    content: '';
+    background-color: black;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.cell.o::before {
+    width: var(--mark-size);
+    height: var(--mark-size);
+}
+
+.cell.o::after {
+    width: calc(var(--mark-size) * .7);
+    height: calc(var(--mark-size) * .7);
+    background-color: white;
 }
