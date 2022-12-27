@@ -64,20 +64,27 @@ body {
 
 /* X styling */
 .cell.x::before,
-.cell.x::after, 
+.cell.x::after,
+.cell.o::before {
+    background-color: black;
+}
+
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after,
+.board.o .cell:not(.x):not(.o):hover::before {
+    background-color: lightgrey;
+}
+
+.cell.x::before,
+.cell.x::after,
 /* only apply hover effect when cursor is not hovering over a spot marked with an X or an O */
 .board.x .cell:not(.x):not(.o):hover::before,
 .board.x .cell:not(.x):not(.o):hover::after {
     content: '';
     width: calc(var(--mark-size) * .15);
     height: var(--mark-size);
-    background-color: black;
+    /* background-color: black; */
     position: absolute;
-}
-
-.board.x .cell:not(.x):not(.o):hover::before,
-.board.x .cell:not(.x):not(.o):hover::after {
-    background-color: lightgrey;
 }
 
 .cell.x::before, 
@@ -92,19 +99,22 @@ body {
 
 /* Y styling */
 .cell.o::before,
-.cell.o::after {
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after {
     content: '';
-    background-color: black;
     position: absolute;
     border-radius: 50%;
 }
 
-.cell.o::before {
+.cell.o::before,
+.board.o .cell:not(.x):not(.o):hover::before {
     width: var(--mark-size);
     height: var(--mark-size);
 }
 
-.cell.o::after {
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::after {
     width: calc(var(--mark-size) * .7);
     height: calc(var(--mark-size) * .7);
     background-color: white;
