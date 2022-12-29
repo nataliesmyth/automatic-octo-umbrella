@@ -21,9 +21,6 @@ body {
     grid-template-columns: repeat(3, auto);
 }
 
-.board.x .cell:hover {
-    
-}
 
 .cell {
     width: var(--cell-size);
@@ -97,7 +94,7 @@ body {
     transform: rotate(-45deg);
 }
 
-/* Y styling */
+/* O marker */
 .cell.o::before,
 .cell.o::after,
 .board.o .cell:not(.x):not(.o):hover::before,
