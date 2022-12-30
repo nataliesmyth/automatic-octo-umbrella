@@ -33,23 +33,29 @@ function handleClick(e) {
     if (checkWin(currentClass)) {
         endGame(false);
         // console.log('winner')
+    } else if (isDraw()) {
+        endGame(true)
+    } else {
+        // we only want to switch turns if there is no winner yet
+        switchTurn()
+        setBoardHoverClass()
     }
-    // Place X or O
-    // Check for win
-    // Check for draw
-    // Switch players
-    switchTurn()
-    setBoardHoverClass()
 }
 
 function endGame(draw) {
     if (draw) {
-
+        winningMsgEl.innerText = 'Draw!'
     } else {
         console.log('winner')
         winningMsgTxtEl.innerText = `${oTurn ? "O's" : "X's"} Wins!`;
     }
     winningMsgEl.classList.add('show');
+}
+
+function isDraw() {
+    return [...cellEls].every(cell => {
+        return cell.classList.contains(xClass) || cell.classList.contains(oClass)
+    })
 }
 
 function placeMark(cell, currentClass) {
