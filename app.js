@@ -15,15 +15,23 @@ const board = document.getElementById('board');
 let oTurn; // this will determine whose turn it is
 winningMsgTxtEl = document.querySelector('[data-winning-msg-txt]');
 winningMsgEl = document.getElementById('winningMsg')
-
+const restartBtn = document.getElementById('restartBtn');
 startGame();
 
+restartBtn.addEventListener('click', startGame);
 function startGame() {
     oTurn = false;
     cellEls.forEach(cell => {
+        // remove x's and o's from board
+        cell.classList.remove(xClass)
+        cell.classList.remove(oClass)
+        cell.removeEventListener('click', handleClick);
         cell.addEventListener('click', handleClick, { once: true }); // the once property only allows the event listener to fire once when set to true
     });
+
     setBoardHoverClass();
+    // remove popup message
+    winningMsgEl.classList.remove('show')
 }
 
 function handleClick(e) {
@@ -44,7 +52,7 @@ function handleClick(e) {
 
 function endGame(draw) {
     if (draw) {
-        winningMsgEl.innerText = 'Draw!'
+        winningMsgTxtEl.innerText = 'Draw!'
     } else {
         console.log('winner')
         winningMsgTxtEl.innerText = `${oTurn ? "O's" : "X's"} Wins!`;
