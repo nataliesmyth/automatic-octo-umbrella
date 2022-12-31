@@ -1,12 +1,8 @@
 # TIC TAC TOE: A Description
 
-This application allows the user to do sign in/up/out, change their password, and play a game of tic tac toe. If the user can only play against another person on their browser.
+This application allows the user to play a game of tic tac toe against another person in the browser.
 
 ## Important Links
-
-- [Other Repo](www.github.com/nataliesmyth/tictactoe)
-- [Deployed API](www.link.com)
-- [Deployed Client](https://nataliesmyth.github.io/tictactoe/)
 
 ## Planning Story
 
